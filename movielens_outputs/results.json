@@ -1,0 +1,256 @@
+{
+  "ratings_rows": 25000095,
+  "movies_rows": 62423,
+  "tags_rows": 1093360,
+  "users": 162541,
+  "rated_movies": 59047,
+  "rating_duplicates_exact": 0,
+  "rating_duplicate_user_movie": 0,
+  "ratings_missing": {
+    "userId": 0,
+    "movieId": 0,
+    "rating": 0,
+    "timestamp": 0
+  },
+  "movies_missing": {
+    "movieId": 0,
+    "title": 0,
+    "genres": 0
+  },
+  "tags_missing": {
+    "userId": 0,
+    "movieId": 0,
+    "tag": 16,
+    "timestamp": 0
+  },
+  "rating_mean": 3.5338549613952637,
+  "rating_median": 3.5,
+  "rating_std": 1.0607439279556274,
+  "rating_min": 0.5,
+  "rating_max": 5.0,
+  "rating_counts": {
+    "0.5": 393068,
+    "1.0": 776815,
+    "1.5": 399490,
+    "2.0": 1640868,
+    "2.5": 1262797,
+    "3.0": 4896928,
+    "3.5": 3177318,
+    "4.0": 6639798,
+    "4.5": 2200539,
+    "5.0": 3612474
+  },
+  "high_rating_pct": 49.81105471799207,
+  "timestamp_min": "1995-01-09T11:46:49+00:00",
+  "timestamp_max": "2019-11-21T09:15:03+00:00",
+  "missing_release_year": 412,
+  "no_genres_listed": 5062,
+  "movie_count_median": 6.0,
+  "movie_count_p99": 9941.620000000003,
+  "movie_count_max": 81491,
+  "user_count_median": 71.0,
+  "user_count_p99": 1228.0,
+  "user_count_max": 32202,
+  "top_1pct_movie_share": 47.6311030018086,
+  "top_5pct_movie_share": 84.46082704885721,
+  "top_10pct_movie_share": 94.02278271342568,
+  "top_20pct_movie_share": 98.2617706052717,
+  "genre_stats": {
+    "Drama": {
+      "count": 10962833,
+      "mean": 3.677184581756592
+    },
+    "Comedy": {
+      "count": 8926230,
+      "mean": 3.423992395401001
+    },
+    "Action": {
+      "count": 7446918,
+      "mean": 3.4665915966033936
+    },
+    "Thriller": {
+      "count": 6763272,
+      "mean": 3.5229642391204834
+    },
+    "Adventure": {
+      "count": 5832424,
+      "mean": 3.517444610595703
+    },
+    "Romance": {
+      "count": 4497291,
+      "mean": 3.5427122116088867
+    },
+    "Sci-Fi": {
+      "count": 4325740,
+      "mean": 3.4781434535980225
+    },
+    "Crime": {
+      "count": 4190259,
+      "mean": 3.6850438117980957
+    },
+    "Fantasy": {
+      "count": 2831585,
+      "mean": 3.5115888118743896
+    },
+    "Children": {
+      "count": 2124258,
+      "mean": 3.4325075149536133
+    },
+    "Mystery": {
+      "count": 2010995,
+      "mean": 3.6701693534851074
+    },
+    "Horror": {
+      "count": 1892183,
+      "mean": 3.2935633659362793
+    },
+    "Animation": {
+      "count": 1630987,
+      "mean": 3.6149463653564453
+    },
+    "War": {
+      "count": 1267346,
+      "mean": 3.7914657592773438
+    },
+    "IMAX": {
+      "count": 1063279,
+      "mean": 3.6037120819091797
+    },
+    "Musical": {
+      "count": 964252,
+      "mean": 3.554715871810913
+    },
+    "Western": {
+      "count": 483731,
+      "mean": 3.5857553482055664
+    },
+    "Documentary": {
+      "count": 322449,
+      "mean": 3.7052805423736572
+    },
+    "Film-Noir": {
+      "count": 247227,
+      "mean": 3.9257280826568604
+    },
+    "(no genres listed)": {
+      "count": 26627,
+      "mean": 3.3263792991638184
+    }
+  },
+  "annual_counts": {
+    "1995": 3,
+    "1996": 1430093,
+    "1997": 626202,
+    "1998": 272099,
+    "1999": 1059080,
+    "2000": 1735398,
+    "2001": 1058750,
+    "2002": 776654,
+    "2003": 920295,
+    "2004": 1048116,
+    "2005": 1613550,
+    "2006": 1038458,
+    "2007": 931432,
+    "2008": 1018001,
+    "2009": 810127,
+    "2010": 792436,
+    "2011": 676498,
+    "2012": 635208,
+    "2013": 515684,
+    "2014": 478270,
+    "2015": 1604971,
+    "2016": 1757440,
+    "2017": 1689935,
+    "2018": 1310761,
+    "2019": 1200634
+  },
+  "temporal_cutoff": "2016-06-25T06:49:57+00:00",
+  "train_rows_full": 20000076,
+  "test_rows_full": 5000019,
+  "model_results": [
+    {
+      "model": "Global-mean baseline",
+      "RMSE": 1.0748271419960342,
+      "MAE": 0.8383443362731934,
+      "R2": -0.0009565877788364485,
+      "train_seconds": 0.0
+    },
+    {
+      "model": "Movie-mean baseline",
+      "RMSE": 1.0070837153793446,
+      "MAE": 0.771134140061297,
+      "R2": 0.12124230841160755,
+      "train_seconds": 0.0
+    },
+    {
+      "model": "Ridge regression",
+      "RMSE": 1.0318847783328353,
+      "MAE": 0.8221643567085266,
+      "R2": 0.07742756605148315,
+      "train_seconds": 0.25707578659057617
+    },
+    {
+      "model": "Histogram gradient boosting",
+      "RMSE": 1.0069272757395928,
+      "MAE": 0.7838701995269128,
+      "R2": 0.12151529834712316,
+      "train_seconds": 11.625215530395508
+    }
+  ],
+  "tuning_results": [
+    {
+      "model": "Ridge",
+      "parameters": "alpha=1.0",
+      "validation_RMSE": 0.8697569301468383
+    },
+    {
+      "model": "Ridge",
+      "parameters": "alpha=10.0",
+      "validation_RMSE": 0.8697567588212398
+    },
+    {
+      "model": "Ridge",
+      "parameters": "alpha=100.0",
+      "validation_RMSE": 0.8697551826241501
+    },
+    {
+      "model": "HGB",
+      "parameters": "leaves=15, lr=0.05",
+      "validation_RMSE": 0.8659244692420214
+    },
+    {
+      "model": "HGB",
+      "parameters": "leaves=31, lr=0.05",
+      "validation_RMSE": 0.8623915209687986
+    },
+    {
+      "model": "HGB",
+      "parameters": "leaves=31, lr=0.08",
+      "validation_RMSE": 0.8602092723663785
+    },
+    {
+      "model": "HGB",
+      "parameters": "leaves=63, lr=0.05",
+      "validation_RMSE": 0.8587479237151315
+    }
+  ],
+  "selected_ridge_alpha": 100.0,
+  "selected_hgb": {
+    "max_leaf_nodes": 63,
+    "learning_rate": 0.05
+  },
+  "model_train_sample": 2000000,
+  "model_test_sample": 1000000,
+  "global_train_mean": 3.527311325073242,
+  "unseen_test_users_pct": 84.6999,
+  "unseen_test_movies_pct": 8.7476,
+  "spearman_correlations": {
+    "movieMean": 0.4309731261479739,
+    "userMean": 0.40576850245541785,
+    "logMovieCount": 0.19667194430512092,
+    "logUserCount": -0.15784329131954233,
+    "movieAge": 0.07590150609603082,
+    "releaseYear": -0.06594297154031527,
+    "ratingMonth": 0.011493051401899618
+  }
+}
