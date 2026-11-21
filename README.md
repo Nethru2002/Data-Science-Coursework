@@ -4,7 +4,7 @@ This is a shared repository holding **two independent coursework projects**, eac
 
 | Project | Domain | Dataset | Author / folder |
 |---|---|---|---|
-| **Predicting Repeat Purchases in Online Retail** | Retail business analytics | UCI Online Retail (541,909 rows) | Nethru Wickramasekara (`analysis_pipeline.py`) |
+| **Predicting Repeat Purchases in Online Retail** | Retail business analytics | UCI Online Retail (541,909 rows) | Nethru (`analysis_pipeline.py`) |
 | **Movie Rating Prediction and Content Discovery** | Entertainment analytics | MovieLens 25M (25,000,095 ratings) | Hiruni Hapuarachchi (`movielens_analysis.py`) |
 
 Each project was written up in a separate report (not included in this repo) following the same five-task structure:
@@ -24,10 +24,9 @@ Data-Science-Coursework/
 ├── analysis_pipeline.py        # Online Retail: cleaning, features, EDA, models (Nethru)
 ├── movielens_analysis.py       # MovieLens 25M: audit, EDA, models (Hiruni)
 ├── Online Retail.xlsx          # Online Retail source data
+├── requirements.txt            # Python dependencies
 ├── .gitattributes              # Git LFS rules for large data files
 │
-├── online-retail/
-│   └── Online Retail.xlsx      # Copy of the Online Retail source data
 ├── analysis_outputs/           # Online Retail outputs (Nethru)
 │   ├── fig1_monthly_revenue.png ... fig6_permutation_importance.png
 │   ├── model_metrics.csv, tuning_results.csv, permutation_importance.csv
@@ -53,7 +52,7 @@ Data-Science-Coursework/
 
 ## Project 1: Online Retail, predicting repeat purchases
 
-*Author: Nethru Wickramasekara. Script: `analysis_pipeline.py`. Outputs: `analysis_outputs/`.*
+*Author: Nethru. Script: `analysis_pipeline.py`. Outputs: `analysis_outputs/`.*
 
 **Goal:** At a monthly snapshot date, predict whether an identifiable customer will place at least one positive order in the next 30 days, to support campaign prioritisation.
 
@@ -115,7 +114,7 @@ cd Data-Science-Coursework
 
 python -m venv .venv
 source .venv/bin/activate        # Windows: .venv\Scripts\activate
-pip install pandas numpy scikit-learn matplotlib seaborn openpyxl
+pip install -r requirements.txt
 ```
 
 **Run the Online Retail pipeline** (from the repo root)
@@ -132,7 +131,7 @@ Reads `Online Retail.xlsx` and writes figures and tables to `analysis_outputs/`.
 python movielens_analysis.py
 ```
 
-Reads the CSV files in `ml-25m/` and writes figures, `model_results.csv` and `results.json` to `movielens_outputs/`.
+Reads `ratings.csv`, `movies.csv` and `tags.csv` from `ml-25m/` (if that folder is missing, it extracts `ml-25m.zip` from the repo root) and writes figures, `model_results.csv` and `results.json` to `movielens_outputs/`.
 
 > The full MovieLens ratings table needs several GB of RAM. The modelling step uses deterministic samples (2M training and 1M test rows), while the audit and EDA use all 25 million ratings.
 
@@ -142,7 +141,7 @@ Reads the CSV files in `ml-25m/` and writes figures, `model_results.csv` and `re
 
 The datasets used by the scripts are included in this repository:
 
-- **Online Retail:** `Online Retail.xlsx` (also copied in `online-retail/`). Source: <https://doi.org/10.24432/C5BW33>, licensed CC BY 4.0.
+- **Online Retail:** `Online Retail.xlsx` in the repo root. Source: <https://doi.org/10.24432/C5BW33>, licensed CC BY 4.0.
 - **MovieLens 25M:** the CSV files in `ml-25m/`. Source: <https://grouplens.org/datasets/movielens/25m/>.
 
 Large files are tracked with **Git LFS** (see `.gitattributes`). Install it before cloning so the data downloads correctly:
@@ -174,5 +173,9 @@ git clone https://github.com/Nethru2002/Data-Science-Coursework.git
 
 Each project is the individual work of its author:
 
-- **Nethru Wickramasekara:** Online Retail project (`analysis_pipeline.py`, `analysis_outputs/`)
+- **Nethru:** Online Retail project (`analysis_pipeline.py`, `analysis_outputs/`)
 - **Hiruni Hapuarachchi:** MovieLens 25M project (`movielens_analysis.py`, `movielens_outputs/`)
+
+## Licence
+
+Code: add your chosen licence here (for example MIT). Datasets remain under their original licences and terms.
