@@ -4,7 +4,7 @@ This is a shared repository holding **two independent coursework projects**, eac
 
 | Project | Domain | Dataset | Author / folder |
 |---|---|---|---|
-| **Predicting Repeat Purchases in Online Retail** | Retail business analytics | UCI Online Retail (541,909 rows) | Nethru (`analysis_pipeline.py`) |
+| **Predicting Repeat Purchases in Online Retail** | Retail business analytics | UCI Online Retail (541,909 rows) | Nethru Wickramasekara (`analysis_pipeline.py`) |
 | **Movie Rating Prediction and Content Discovery** | Entertainment analytics | MovieLens 25M (25,000,095 ratings) | Hiruni Hapuarachchi (`movielens_analysis.py`) |
 
 Each project was written up in a separate report (not included in this repo) following the same five-task structure:
@@ -25,6 +25,11 @@ Data-Science-Coursework/
 ├── movielens_analysis.py       # MovieLens 25M: audit, EDA, models (Hiruni)
 ├── Online Retail.xlsx          # Online Retail source data
 ├── requirements.txt            # Python dependencies
+├── notebooks/                  # Notebook versions of both scripts
+│   ├── online_retail_analysis.ipynb
+│   └── movielens_analysis.ipynb
+├── tests/
+│   └── test_smoke.py           # Smoke tests (see "Testing")
 ├── .gitattributes              # Git LFS rules for large data files
 │
 ├── analysis_outputs/           # Online Retail outputs (Nethru)
@@ -52,7 +57,7 @@ Data-Science-Coursework/
 
 ## Project 1: Online Retail, predicting repeat purchases
 
-*Author: Nethru. Script: `analysis_pipeline.py`. Outputs: `analysis_outputs/`.*
+*Author: Nethru Wickramasekara. Script: `analysis_pipeline.py`. Outputs: `analysis_outputs/`.*
 
 **Goal:** At a monthly snapshot date, predict whether an identifiable customer will place at least one positive order in the next 30 days, to support campaign prioritisation.
 
@@ -65,7 +70,7 @@ Data-Science-Coursework/
 - **Leakage control:** chronological split (train Apr to Aug, validate Sep, test Oct to Nov), with winsorisation limits learned on training data only.
 - **Models:** regularised logistic regression and histogram gradient boosting, with class weighting and F1-optimised thresholds.
 
-**Out-of-time test results (Oct to Nov 2011)**
+**Out-of-time test results (Oct to Nov 2011), as reported**
 
 | Model | Balanced acc. | F1 | ROC-AUC | PR-AUC | Top-decile lift |
 |---|---|---|---|---|---|
@@ -91,7 +96,7 @@ Order count over the previous 180 days was by far the most important feature. Th
 - **Split:** chronological, with a cut-off of 25 June 2016 (20.0M train / 5.0M test). Modelling used deterministic samples of 2M train and 1M test rows (seed 42).
 - **Models:** Ridge regression and histogram gradient boosting, compared against global-mean and smoothed movie-mean baselines.
 
-**Future test results**
+**Future test results, as reported**
 
 | Model | RMSE | MAE | R² |
 |---|---|---|---|
@@ -137,6 +142,31 @@ Reads `ratings.csv`, `movies.csv` and `tags.csv` from `ml-25m/` (if that folder 
 
 ---
 
+## Notebooks
+
+Step-by-step notebook versions of the two scripts are in `notebooks/`:
+
+- `online_retail_analysis.ipynb` (Nethru)
+- `movielens_analysis.ipynb` (Hiruni Hapuarachchi)
+
+Open them in Jupyter or VS Code (run `pip install jupyter` first if needed). The MovieLens notebook needs several GB of RAM. They find the data from either the repo root or `notebooks/`. The Online Retail notebook is the original script split into cells, so it writes to `analysis_outputs/` just like `analysis_pipeline.py`. The MovieLens notebook is likewise the original script split into cells, and writes to `movielens_outputs/`.
+
+## Testing
+
+A small smoke test checks that the scripts and notebooks are valid Python, the dependencies import, the output files exist, and key numbers in the outputs match the reports (for example 21,613 customer snapshots and a MovieLens RMSE of about 1.0069). It does not retrain any models. Score checks allow a small tolerance for library-version differences.
+
+```bash
+python -m unittest discover -s tests -v
+```
+
+To also re-run the Online Retail pipeline end to end (about a minute; it runs in a temporary folder, so `analysis_outputs/` is not changed):
+
+```bash
+RUN_RETAIL=1 python -m unittest discover -s tests -v      # Windows PowerShell: $env:RUN_RETAIL=1
+```
+
+---
+
 ## Data
 
 The datasets used by the scripts are included in this repository:
@@ -151,7 +181,7 @@ git lfs install
 git clone https://github.com/Nethru2002/Data-Science-Coursework.git
 ```
 
-**MovieLens licence note:** the dataset belongs to GroupLens Research (University of Minnesota). Its terms require acknowledgement, prohibit redistribution without permission, and require separate permission for commercial use. It is included here for coursework reproducibility only. If you reuse it, download it from the official page above and cite Harper and Konstan (2015).
+**MovieLens licence note:** the dataset belongs to GroupLens Research (University of Minnesota). Its terms require acknowledgement, prohibit redistribution without permission, and require separate permission for commercial use. It is included here for coursework reproducibility only. If the `ml-25m/` folder is not in the repo, download the dataset from the official page above, extract it into `ml-25m/` in the repo root (or place `ml-25m.zip` there), and cite Harper and Konstan (2015).
 
 ---
 
@@ -159,6 +189,7 @@ git clone https://github.com/Nethru2002/Data-Science-Coursework.git
 
 - Random seed is fixed at **42** in both projects.
 - All splits are chronological to avoid look-ahead leakage.
+- Data cleaning, features and logistic-regression results reproduce exactly across environments. Gradient-boosting scores can shift slightly between scikit-learn versions (for example PR-AUC around 0.610 to 0.612), so pin the versions in `requirements.txt` to the ones you used for the reports (`pip freeze`).
 - Figures and statistics in the write-ups were generated from the code in this repository, with no third-party charts reused.
 - MovieLens numerical outputs are stored in `movielens_outputs/results.json` and `movielens_outputs/model_results.csv`; Online Retail outputs are in `analysis_outputs/`.
 
@@ -173,9 +204,5 @@ git clone https://github.com/Nethru2002/Data-Science-Coursework.git
 
 Each project is the individual work of its author:
 
-- **Nethru:** Online Retail project (`analysis_pipeline.py`, `analysis_outputs/`)
+- **Nethru Wickramasekara:** Online Retail project (`analysis_pipeline.py`, `analysis_outputs/`)
 - **Hiruni Hapuarachchi:** MovieLens 25M project (`movielens_analysis.py`, `movielens_outputs/`)
-
-## Licence
-
-Code: add your chosen licence here (for example MIT). Datasets remain under their original licences and terms.
